@@ -235,7 +235,7 @@ public class DemoApplication  implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws  Exception {
 
-//		adminRepository.save(new Admin((long)103,"Melloul","Yassir","EE45674","admin1@AFOIHebank.com",bCryptPasswordEncoder.encode("admin")));
+		//adminRepository.save(new Admin((long)105,"Melloul","Yassir","EE45674","admin1@AFOIHebank.com",bCryptPasswordEncoder.encode("admin")));
 
 	}
 }
