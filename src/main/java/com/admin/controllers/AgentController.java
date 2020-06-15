@@ -31,7 +31,7 @@ public class AgentController {
     private ActivityRepository activityRepository;
 
 
-    private String url = "https://afoiih-agent.herokuapp.com";
+    private String url = "https://afoihi-agent.herokuapp.com";
 
     @Autowired
     RestTemplate restTemplate;
