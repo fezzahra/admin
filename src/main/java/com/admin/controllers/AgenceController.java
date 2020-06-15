@@ -30,7 +30,7 @@ public class AgenceController{
     @Autowired
     private AdminRestController adminRestController;
 
-    private String url = "http://localhost:8081";
+    private String url = "https://afoiih-agent.herokuapp.com";
 
 
     @RequestMapping(value="/get-agence")
