@@ -11,7 +11,7 @@ public class CompteBancaire implements Serializable {
     private String rib;
     private Date dateCreation;
     private Double solde;
-    private boolean etat;
+    private Integer etat;
     private Double fraisOuverture;
 
 
@@ -68,11 +68,11 @@ public class CompteBancaire implements Serializable {
         this.solde = solde;
     }
 
-    public boolean isEtat() {
+    public Integer isEtat() {
         return etat;
     }
 
-    public void setEtat(boolean etat) {
+    public void setEtat(Integer etat) {
         this.etat = etat;
     }
 
@@ -95,7 +95,7 @@ public class CompteBancaire implements Serializable {
     }
 
 
-    public CompteBancaire(String typeCompte, Long numCompte, String rib, Date dateCreation, Double solde, boolean etat, Double fraisOuverture, Client client, Agent agent) {
+    public CompteBancaire(String typeCompte, Long numCompte, String rib, Date dateCreation, Double solde, Integer etat, Double fraisOuverture, Client client, Agent agent) {
         this.typeCompte = typeCompte;
         this.numCompte = numCompte;
         this.rib = rib;
