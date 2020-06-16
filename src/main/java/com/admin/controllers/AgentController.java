@@ -140,7 +140,9 @@ else{
                 agent.setPassword(ag.getPassword());
                 agent.setNumContrat(ag.getNumContrat());
                 agent.setNumAgence(ag.getNumAgence());
-                agent.setAgence(agenceRepository.findById(ag.getNumAgence()).get());
+                if(agent.getNumAgence()==0){agent.setAgence(null);}
+                else{
+                agent.setAgence(agenceRepository.findById(ag.getNumAgence()).get());}
                 break;
             }
         }
