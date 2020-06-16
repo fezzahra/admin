@@ -72,7 +72,7 @@
                         <option th:each="a:${listeAgence}"
                                 th:text="${a.nomAgence}"
                                 th:value="${a.nomAgence}"
-                                th:selected="${agent.agence.nomAgence}"/>
+                                th:selected="${agent?.agence?.nomAgence}"/>
                     </select>
                 </div>
                 <div class="divsave">
