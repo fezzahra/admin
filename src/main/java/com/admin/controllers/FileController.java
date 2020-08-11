@@ -26,13 +26,41 @@ ActivityRepository activityRepository;
     public void write(HttpServletRequest request, HttpServletResponse servletResponse) throws IOException {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        List<Activity> list=activityRepository.findAll();
+       // List<Activity> list=activityRepository.findAllByTypeAction(1);
+         List<Activity> list=activityRepository.findAll();
         BufferedWriter writer = new BufferedWriter(new FileWriter("historique.txt"));
         for(Activity l : list){
             String strDate = dateFormat.format(l.getDate());
-            String act=l.getAction();
-            writer.write(strDate+ "    "+act);
-            writer.write("\r\n");
+           // String act=l.getAction();
+           // writer.write(strDate+ "    "+act);
+            int type = l.getTypeAction();
+            switch (type) {
+                case 1:
+                    writer.write(strDate+"\t \t"+"Admin ID: " + l.getId_acteur() + " a ajouté l'agence Num: " + l.getId_objet());
+                    break;
+                case 2:
+                    writer.write(strDate+"\t \t"+"Admin ID: " + l.getId_acteur() + " a modifié l'agence Num: " + l.getId_objet());
+                    break;
+                case 3:
+                    writer.write(strDate+"\t \t"+"Admin ID: " + l.getId_acteur() + " a supprimé l'agence Num: " + l.getId_objet());
+                    break;
+                case 4:
+                    writer.write(strDate+"\t \t"+"Admin ID: " + l.getId_acteur() + " a ajouté l'agent ID: " + l.getId_objet());
+                    break;
+                case 5:
+                    writer.write(strDate+"\t \t"+"Admin ID: " + l.getId_acteur() + " a modifié l'agent ID: " + l.getId_objet());
+                    break;
+                case 6:
+                    writer.write(strDate+"\t \t"+"Admin ID: " + l.getId_acteur() + " a supprimé l'agent ID: " + l.getId_objet());
+                    break;
+                case 7:
+                    writer.write(strDate+"\t \t"+"Agent ID: " + l.getId_acteur() + " a désactivé le compte Num: " + l.getId_objet());
+                    break;
+                case 8:
+                    writer.write(strDate+"\t \t"+"Agent ID: " + l.getId_acteur() + " a supprimé le client ID: " + l.getId_objet());
+                    break;
+            }
+            writer.write("\r\n\n");
         }
         writer.close();
 

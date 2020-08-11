@@ -10,8 +10,9 @@ import java.io.Serializable;
 public class Agence implements Serializable {
 
     @Id
-    private Integer numAgence; // code guichet
+    //private Integer numAgence; // code guichet
 
+    private Integer numAgence;
     @Size(min=10, max=40, message="nom doit etre entre 10 et 40")
     @Pattern(regexp = "^((?![\\^!@#$*~ <>?]).)((?![\\^!@#$*~<>?]).){0,38}((?![\\^!@#$*~ <>?]).)$", message="nom invalid")
     private String nomAgence;
@@ -20,7 +21,9 @@ public class Agence implements Serializable {
     @Pattern(regexp = "^((?![\\^!@#$*~ <>?]).)((?![\\^!@#$*~<>?]).){0,78}((?![\\^!@#$*~ <>?]).)$", message="adresse invalid")
     private String adresse;
 
-    @Pattern(regexp = "^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$", message="ville invalid")
+    //@Pattern(regexp = "^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$", message="ville invalid")
+/*    @Transient
+    private Ville Ville;*/
     private String ville;
 
     @Pattern(regexp = "(\\+212|0)([ \\-_/]*)(\\d[ \\-_/]*){9}", message="téléphone invalid")
@@ -60,7 +63,7 @@ public class Agence implements Serializable {
     public Integer getNumAgence() {
         return numAgence;
     }
-    public void setNumAgence(int numAgence) {
+    public void setNumAgence(Integer numAgence) {
         this.numAgence = numAgence;
     }
     public String getNomAgence() {

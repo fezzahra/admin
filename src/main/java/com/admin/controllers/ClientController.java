@@ -21,9 +21,11 @@ public class ClientController {
     @Autowired
     RestTemplate restTemplate;
 
-    private String url = "https://afoih-client.herokuapp.com";
+   // private String url = "https://afoih-client.herokuapp.com";
+    private String url = "http://localhost:8082";
 
-        @RequestMapping(value="/clients")
+
+    @RequestMapping(value="/clients")
         public String list(Model model,String mc) {
 
             List<Client> list = null;

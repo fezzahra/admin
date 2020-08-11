@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @RestController
@@ -19,14 +20,14 @@ public class ActivityController {
     ActivityRepository activityRepository;
 
     @RequestMapping(value="/desactiverCompte", method = RequestMethod.POST)
-    public Activity desac(@RequestBody String s) {
-     Activity activity=new Activity(s,new Date());
+    public Activity desac(@RequestBody ArrayList<Long> l) {
+        Activity activity = new Activity(8,new Date(),l.get(0),l.get(1));
         return activityRepository.save(activity);
     }
 
     @RequestMapping(value="/supprimerClient", method = RequestMethod.POST)
-    public Activity supprimer(@RequestBody String s) {
-        Activity activity=new Activity(s,new Date());
+    public Activity supprimer(@RequestBody ArrayList<Long> l) {
+        Activity activity = new Activity(7,new Date(),l.get(0),l.get(1));
         return activityRepository.save(activity);
     }
 

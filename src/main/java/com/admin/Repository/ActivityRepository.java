@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface ActivityRepository extends JpaRepository<Activity,Integer> {
 
-    List<Activity> findFirst20ByOrderByIdDesc();
+   public  List<Activity> findFirst20ByOrderByIdDesc();
+
+   public  List<Activity> findAllByTypeAction(int type_action);
 }

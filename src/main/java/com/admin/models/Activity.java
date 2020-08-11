@@ -14,8 +14,41 @@ public class Activity {
     @Id
     @GeneratedValue
     private int id;
-    private String action;
+
+    /*
+
+    1 création agence
+    2 modification agence
+    3 suppression agence
+    4 création agent
+    5 modification agent
+    6 suppression agent
+    7 suppression client
+    8 désactivation compte
+
+
+     */
+    private int typeAction;
     private Date date;
+    private Long id_acteur;
+    private Long id_objet;
+
+
+    public Long getId_acteur() {
+        return id_acteur;
+    }
+
+    public void setId_acteur(Long id_acteur) {
+        this.id_acteur = id_acteur;
+    }
+
+    public Long getId_objet() {
+        return id_objet;
+    }
+
+    public void setId_objet(Long id_objet) {
+        this.id_objet = id_objet;
+    }
 
     public int getId() {
         return id;
@@ -25,12 +58,12 @@ public class Activity {
         this.id = id;
     }
 
-    public String getAction() {
-        return action;
+    public int getTypeAction() {
+        return typeAction;
     }
 
-    public void setAction(String action) {
-        this.action = action;
+    public void setTypeAction(int typeAction) {
+        this.typeAction = typeAction;
     }
 
     public Date getDate() {
@@ -41,20 +74,27 @@ public class Activity {
         this.date = date;
     }
 
-    public Activity(int id, String action) {
+    public Activity(int id, int type_action) {
         this.id = id;
-        this.action = action;
+        this.typeAction = type_action;
     }
 
     public Activity() {
     }
 
-    public Activity(String action) {
-        this.action = action;
+    public Activity(int type_action) {
+        this.typeAction = type_action;
     }
 
-    public Activity(String action, Date date) {
-        this.action = action;
+    public Activity(int type_action, Date date) {
+        this.typeAction = type_action;
         this.date = date;
+    }
+
+    public Activity(int type_action, Date date, Long id_acteur, Long id_objet) {
+        this.typeAction = type_action;
+        this.date = date;
+        this.id_acteur = id_acteur;
+        this.id_objet = id_objet;
     }
 }

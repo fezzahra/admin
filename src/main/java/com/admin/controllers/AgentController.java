@@ -31,7 +31,9 @@ public class AgentController {
     private ActivityRepository activityRepository;
 
 
-    private String url = "https://afoihi-agent.herokuapp.com";
+  //  private String url = "https://afoihi-agent.herokuapp.com";
+  private String url = "http://localhost:8081";
+
 
     @Autowired
     RestTemplate restTemplate;
@@ -87,11 +89,16 @@ else{
         agent.setAgence(agence);
         agent.setNumAgence(agence.getNumAgence());
         Agent ag= restTemplate.postForObject(url + "/agent/add", agent, Agent.class);
-        Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
+        model.addAttribute("pass", pass);
+        model.addAttribute("agentcree", ag.getUsername());
+     /*   Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
                 + " a ajouté l'agent ID "+ ag.getId());
         model.addAttribute("pass", pass);
         model.addAttribute("agentcree", ag.getUsername());
         activity.setDate(new Date());
+
+      */
+        Activity activity = new Activity(4,new Date(),adminRestController.currentAdmin().getId(),ag.getId());
         activityRepository.save(activity);
 
         return "Agent/agent-cree";
@@ -106,7 +113,7 @@ else{
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String update(Model model, @PathVariable("id") Long id, Agent agent) {
+    public String update(Model model, @PathVariable("id") Integer id, Agent agent) {
 
         System.out.println("admin" + agent.getNumAgence());
         Agence agence = agenceRepository.findByNomAgence(agent.getAgence().getNomAgence());
@@ -114,9 +121,11 @@ else{
         agent.setNumAgence(agence.getNumAgence());
         restTemplate.postForObject(url + "/agent/update/"+id, agent, Agent.class);
 
-        Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
+     /*   Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
                 + " a modifié l'agent ID "+ id);
-        activity.setDate(new Date());
+        activity.setDate(new Date());*/
+
+        Activity activity = new Activity(5,new Date(),adminRestController.currentAdmin().getId(),agent.getId());
         activityRepository.save(activity);
         return "redirect:/index";
     }
@@ -178,9 +187,11 @@ else{
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getForObject(url+"/agent/deleteagent/"+id, String.class);
-        Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
+    /*    Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
                 + " a supprimé l'agent ID "+ id);
-        activity.setDate(new Date());
+        activity.setDate(new Date());*/
+
+        Activity activity = new Activity(6,new Date(),adminRestController.currentAdmin().getId(),id);
         activityRepository.save(activity);
 
         return "redirect:/index";

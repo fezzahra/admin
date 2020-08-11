@@ -3,7 +3,9 @@ package com.admin;
 import com.admin.Repository.ActivityRepository;
 import com.admin.Repository.AdminRepository;
 import com.admin.Repository.AgenceRepository;
+import com.admin.Repository.VilleRepository;
 import com.admin.models.Admin;
+import com.admin.models.Ville;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +19,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 
 @SpringBootApplication
@@ -30,6 +34,9 @@ public class DemoApplication  implements CommandLineRunner {
 
    @Autowired
 	public AdminRepository adminRepository;
+
+	@Autowired
+	public VilleRepository villeRepository;
 
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder=new  BCryptPasswordEncoder();
@@ -227,7 +234,7 @@ public class DemoApplication  implements CommandLineRunner {
 		ApplicationContext ctx =SpringApplication.run(DemoApplication.class, args);
 		AgenceRepository agence=ctx.getBean(AgenceRepository.class);
 		ActivityRepository activity=ctx.getBean(ActivityRepository.class);
-
+		VilleRepository ville=ctx.getBean(VilleRepository.class);
 
 	}
 
@@ -235,7 +242,70 @@ public class DemoApplication  implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws  Exception {
 
-		//adminRepository.save(new Admin((long)105,"Melloul","Yassir","EE45674","admin1@AFOIHebank.com",bCryptPasswordEncoder.encode("admin")));
+	//	adminRepository.save(new Admin((long)105,"Melloul","Yassir","EE45674","admin1@AFOIHebank.com",bCryptPasswordEncoder.encode("admin")));
+	/*
+		Ville c1 = new Ville("Salé");
+		Ville c2 = new Ville("Meknes");
+		Ville c3 = new Ville("Rabat");
+		Ville c4 = new Ville("Oujda");
+		Ville c5 = new Ville("Kenitra");
+		Ville c6 = new Ville("Agadir");
+		Ville c7= new Ville("Tetouan");
+		Ville c8 = new Ville("Temara");
+		Ville c9 = new Ville("Safi");
+		Ville c10 = new Ville("Mohammedia");
+		Ville c11= new Ville("Khouribga");
+		Ville c12 = new Ville("El Jadida");
+		Ville c13 = new Ville("Beni Mellal");
+		Ville c14= new Ville("Ait Melloul");
+		Ville c15= new Ville("Nador");
+		Ville c16= new Ville("Dar Bouazza");
+		Ville c17= new Ville("Taza");
+		Ville c18= new Ville("Settat");
+		Ville c19= new Ville("Berrechid");
+		Ville c20= new Ville("Khemisset");
+		Ville c21= new Ville("Inezgane");
+		Ville c22= new Ville("Ksar El Kebir");
+		Ville c23= new Ville("Larache");
+		Ville c24= new Ville("Guelmim");
+		Ville c25= new Ville("Khenifra");
+		Ville c26= new Ville("Berkane");
+		Ville c27= new Ville("Taourirt");
+		Ville c28= new Ville("Bouskoura");
+		Ville c29= new Ville("Fquih Ben Salah");
+		Ville c30= new Ville("Oued Zem");
+		Ville c31= new Ville("El Kelaa Des Sraghna");
+		Ville c32= new Ville("Sidi Slimane");
+		Ville c33= new Ville("Errachidia");
+		Ville c34= new Ville("Guercif");
+		Ville c35= new Ville("Oulad Teima");
+		Ville c36= new Ville("Ben Guerir");
+		Ville c37= new Ville("Tifelt");
+		Ville c38= new Ville("Taroudant");
+		Ville c39= new Ville("Sefrou");
+		Ville c40= new Ville("Essaouira");
+		Ville c41= new Ville("Fnideq");
+		Ville c42= new Ville("Sidi Kacem");
+		Ville c43= new Ville("Tiznit");
+		Ville c44= new Ville("Tan-Tan");
+		Ville c45= new Ville("Ouarzazate");
+		Ville c46= new Ville("Youssoufia");
+		Ville c47= new Ville("Martil");
+		Ville c48= new Ville("Skhirat");
+		Ville c49= new Ville("Ouazzane");
+		Ville c50= new Ville("Benslimane");
+		Ville c51= new Ville("Al Hoceima");
+		Ville c52= new Ville("M'diq");
+		Ville c53= new Ville("Midelt");
+		Ville c54= new Ville("Azrou");
+		Ville c55= new Ville("Marrakech");
+		Ville c56= new Ville("Casablanca");
+		Ville c57= new Ville("Fez");
+		Ville c58= new Ville("Tangier");
+		List<Ville> villes = Arrays.asList(c1, c2, c3, c4,c5,c6,c7,c8,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30,c31,c32,c33,c34,c35,c36
+		,c37,c38,c39,c40,c41,c42,c43,c44,c45,c46,c47,c48,c49,c50,c51,c52,c53,c54,c55,c56,c57,c58);
+		villeRepository.saveAll(villes);
+*/
 
 	}
 }

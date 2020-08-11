@@ -2,6 +2,7 @@ package com.admin.controllers;
 
 import com.admin.Repository.ActivityRepository;
 import com.admin.Repository.AgenceRepository;
+import com.admin.Repository.VilleRepository;
 import com.admin.models.Activity;
 import com.admin.models.Agence;
 import org.hibernate.annotations.Cascade;
@@ -29,6 +30,13 @@ public class AgenceController{
 
     @Autowired
     private AdminRestController adminRestController;
+
+    @Autowired
+    private VilleRepository villeRepository;
+
+    @Autowired
+    private VilleController villeController;
+
 
     private String url = "https://afoihi-agent.herokuapp.com";
 
@@ -61,6 +69,8 @@ public class AgenceController{
     @RequestMapping(value="/addAgence" , method= RequestMethod.GET)
     public String addAgence(Model model, Agence agence){
         model.addAttribute("agence",new Agence());
+        model.addAttribute("villes",villeController.findAllOrderByNomVilleAsc());
+
         return "Agence/add-agence";
     }
 
@@ -68,6 +78,7 @@ public class AgenceController{
     public String editAgence(Model model,int numAgence) {
         Agence a= agenceRepository.findById(numAgence).get();
         model.addAttribute("agence",a);
+        model.addAttribute("villes",villeController.findAllOrderByNomVilleAsc());
         return "Agence/edit-agence";
     }
 
@@ -76,9 +87,14 @@ public class AgenceController{
         Agence a=agenceRepository.findById(id).get();
         agence.setNumAgence(id);
         agenceRepository.save(agence);
-        Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
+
+
+       /* Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
                 + " a modifié l'agence "+ agence.getNumAgence());
         activity.setDate(new Date());
+
+        */
+        Activity activity = new Activity(2,new Date(),adminRestController.currentAdmin().getId(),Long.valueOf(agence.getNumAgence()));
         activityRepository.save(activity);
 
         return "redirect:/liste";
@@ -87,6 +103,7 @@ public class AgenceController{
     @RequestMapping(value="/saveAgence" , method= RequestMethod.POST)
     public String saveAgence(Model model,@Valid Agence agence, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
+            model.addAttribute("villes",villeController.findAllOrderByNomVilleAsc());
             return "Agence/add-agence";
         }
         Integer lastCodeGuichet;
@@ -96,9 +113,10 @@ public class AgenceController{
         else{lastCodeGuichet=agenceRepository.lastcodeguichet()+1;}
         agence.setNumAgence(lastCodeGuichet);
         agenceRepository.save(agence);
-        Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
-        + " a ajouté l'agence "+ agence.getNumAgence() +" " + agence.getNomAgence());
-        activity.setDate(new Date());
+      /*  Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
+        + " a ajouté l'agence "+ agence.getNumAgence() +" " + agence.getNomAgence());*/
+        Activity activity = new Activity(1,new Date(),adminRestController.currentAdmin().getId(),Long.valueOf(agence.getNumAgence()));
+        //activity.setDate(new Date());
         activityRepository.save(activity);
         return "redirect:/liste";
     }
@@ -114,9 +132,14 @@ public class AgenceController{
 
         agenceRepository.delete(a);
 
-        Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
+      /*  Activity activity = new Activity("Admin ID: "+adminRestController.currentAdmin().getId()
                 + " a supprimé l'agence "+ a.getNumAgence() +" " + a.getNomAgence());
         activity.setDate(new Date());
+
+       */
+
+        Activity activity = new Activity(3,new Date(),adminRestController.currentAdmin().getId(),Long.valueOf(a.getNumAgence()));
+
         activityRepository.save(activity);
         return "redirect:/liste";
 

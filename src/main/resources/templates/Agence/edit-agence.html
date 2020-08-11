@@ -57,9 +57,13 @@
                     <div class="labeldiv"><label class="control-label ctrlabel">Adresse</label></div>
                     <input class="form-control form-control-lg input"  type="text" name="adresse"  th:value="${agence.getAdresse()}"/>
                 </div>
-                <div class="form-group formgroup" >
+                <div class="form-group ">
                     <div class="labeldiv"><label class="control-label ctrlabel">Ville</label></div>
-                    <input class="form-control form-control-lg input" type="text" name="ville"  th:value="${agence.getVille()}"/>
+                    <select class="form-control" th:field="${agence.ville}">
+                            <option th:each="v:${villes}"
+                                    th:text="${v.nomVille}"
+                                    th:value="${v.nomVille}"/>
+                        </select>
                 </div>
                 <div class="form-group formgroup">
                     <div class="labeldiv"><label class="control-label ctrlabel">Telephone</label></div>
